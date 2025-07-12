@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import imageHero from "../assets/imghero.png";
 
 export default function Contact() {
@@ -46,28 +46,34 @@ export default function Contact() {
 
     try {
       // EmailJS configuration
-      // Replace these with your actual EmailJS credentials
-      const serviceId = 'YOUR_SERVICE_ID'; // Get this from EmailJS dashboard
-      const templateId = 'YOUR_TEMPLATE_ID'; // Get this from EmailJS dashboard
-      const publicKey = 'YOUR_PUBLIC_KEY'; // Get this from EmailJS dashboard
+      const serviceId = import.meta.env.EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY;
 
-      const result = await emailjs.sendForm(
+      await emailjs.send(
         serviceId,
         templateId,
-        formRef.current,
-        publicKey
+        {
+          user_name: formData.name,
+          user_email: formData.email,
+          message: formData.message,
+        },
+        {
+          publicKey: publicKey,
+        },
       );
 
-      if (result.status === 200) {
-        setSubmitStatus({ type: "success", message: "Message sent successfully! I'll get back to you soon." });
-        setFormData({ name: "", email: "", message: "" });
-        formRef.current.reset();
+      setSubmitStatus({ type: "success", message: "Message sent successfully! I'll get back to you soon." });
+      setFormData({ name: "", email: "", message: "" });
+      formRef.current.reset();
+    } catch (err) {
+      if (err instanceof EmailJSResponseStatus) {
+        console.log('EMAILJS FAILED...', err);
+        setSubmitStatus({ type: "error", message: "Email service failed. Please try again." });
       } else {
-        throw new Error('Failed to send email');
+        console.log('ERROR', err);
+        setSubmitStatus({ type: "error", message: "Failed to send message. Please try again." });
       }
-    } catch (error) {
-      console.error('EmailJS Error:', error);
-      setSubmitStatus({ type: "error", message: "Failed to send message. Please try again." });
     } finally {
       setIsSubmitting(false);
     }
