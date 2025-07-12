@@ -31,8 +31,7 @@ export default function Hero() {
             </h2>
           </header>
           <p className="text-base sm:text-lg md:text-lg text-gray-200 mb-6">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit Lorem,
-            ipsum dolor sit amet consectetur adipisicing elit
+            I’m a full-stack and mobile developer who enjoys building backend services, mobile apps, and web interfaces that solve real problems. With a strong focus on clean code and scalable architecture, I love turning ideas into working products.
           </p>
           <div className="flex items-center space-x-4 mb-6">
             <a href="https://github.com/3bdalrahman" target="_blank">

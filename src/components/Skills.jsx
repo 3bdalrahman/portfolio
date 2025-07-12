@@ -22,43 +22,49 @@ const SkillsData = [
     image:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
     title: "Express",
-    description: "A minimal and flexible Node.js web application framework for building APIs and web applications.",
+    description:
+      "A minimal and flexible Node.js web application framework for building APIs and web applications.",
   },
   {
     id: 4,
     image:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
     title: "Mongodb",
-    description: "A document-oriented NoSQL database that provides high performance and easy scalability.",
+    description:
+      "A document-oriented NoSQL database that provides high performance and easy scalability.",
   },
   {
     id: 5,
     image:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
     title: "firebase",
-    description: "Google's platform offering real-time database, authentication, hosting, and cloud functions.",
+    description:
+      "Google's platform offering real-time database, authentication, hosting, and cloud functions.",
   },
   {
     id: 6,
     image:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
     title: "PHP",
-    description: "A popular server-side scripting language designed for web development.",
+    description:
+      "A popular server-side scripting language designed for web development.",
   },
   {
     id: 7,
     image:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
     title: "Laravel",
-    description: "An elegant PHP framework with MVC architecture and built-in tools for rapid development.",
+    description:
+      "An elegant PHP framework with MVC architecture and built-in tools for rapid development.",
   },
   {
     id: 8,
     image:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
     title: "MySQL",
-    description: "A reliable relational database management system widely used for web applications.",
-  }
+    description:
+      "A reliable relational database management system widely used for web applications.",
+  },
 ];
 const SkillBox = ({ image, title, description }) => (
   <article className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center hover:bg-purple-800 transition-all duration-300">
@@ -73,7 +79,10 @@ const SkillBox = ({ image, title, description }) => (
 );
 export default function Skills() {
   return (
-    <section id="skills"  className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center text-white px-4 py-10">
+    <section
+      id="skills"
+      className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center text-white px-4 py-10"
+    >
       <div
         className="absolute z-0 w-72 h-36 sm:w-96 sm:h-44 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 top-10 sm:top-28
         left-1/2 transform -translate-x-1/2"
@@ -94,10 +103,9 @@ export default function Skills() {
             <span className="text-purple-400">Skills</span>
           </h1>
           <p className="text-gray-400 mt-2 sm:mt-4 text-sm sm:text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-            magnam accusantium cum at? Eius alias, expedita vero aliquam minima
-            reiciendis quia, quisquam accusamus repudiandae unde ipsam dolorem
-            porro, harum illum?
+            I’ve worked with a variety of tools and technologies to build
+            full-stack web and mobile apps. From backend APIs to responsive
+            frontends, I focus on writing clean, efficient, and scalable code.
           </p>
         </header>
         <section

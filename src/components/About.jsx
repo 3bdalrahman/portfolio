@@ -43,24 +43,26 @@ export default function About() {
           className="text-center lg:text-left relative"
         >
           <div className=" absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
-            <header>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-                About Me    
-              </h1>
-            </header>
-            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-              I'm a software engineer with a passion for building web
-              applications. I'm a quick learner and I'm always looking for new
-              challenges.
-            </p>
-            <footer>
-              <button
-                className="inline-flex text-white border-2 py-2 px-4 sm:px-6 focus:outline-none 
+          <header>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+              About Me
+            </h1>
+          </header>
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+            I’m a full-stack and mobile developer with a strong focus on backend
+            development. I’ve built real-world projects using Node.js, React,
+            Laravel, and Kotlin — solving real problems and constantly learning
+            new tech. I enjoy building clean, scalable systems that make a real
+            impact.
+          </p>
+          <footer>
+            <button
+              className="inline-flex text-white border-2 py-2 px-4 sm:px-6 focus:outline-none 
                 hover:bg-[#801b9c] hover:shadow-[0_0_40px_rgba(128,0,128,0.7)] rounded-full text-sm sm:text-lg"
-              >
-                Learn More
-              </button>
-            </footer>
+            >
+              Learn More
+            </button>
+          </footer>
         </article>
       </div>
     </section>
