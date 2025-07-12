@@ -14,9 +14,13 @@ export default function Contact() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // Map the input names to state properties
+    const stateProperty = name === 'user_name' ? 'name' : 
+                         name === 'user_email' ? 'email' : 
+                         name;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [stateProperty]: value
     }));
   };
 
@@ -170,7 +174,7 @@ export default function Contact() {
               className={`w-full text-white border-2 py-2 px-6 focus:outline-none rounded-full text-lg transition-all duration-300 ${
                 isSubmitting 
                   ? "opacity-50 cursor-not-allowed" 
-                  : "hover:bg-[#801b9c] hover:shadow-[0_0_40px_rgba(128,0,128,0.5)]"
+                  : "hover:bg-[#801b9c] hover:shadow-[0_0_40px_rgba(128,0,128,0.5)] cursor-pointer"
               }`}
             >
               {isSubmitting ? "Sending..." : "Send Message"}

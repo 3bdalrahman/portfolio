@@ -47,7 +47,7 @@ export default function Hero() {
           >
             <button
               className="inline-flex text-white border-2 py-2 px-6 focus:outline-none hover:bg-[#801b9c]
-                    hover:shadow-[0_0_40px_rgba(128,0,128,0.7)] rounded-full text-lg"
+                    hover:shadow-[0_0_40px_rgba(128,0,128,0.7)] rounded-full text-lg cursor-pointer"
             >
               View CV
             </button>
