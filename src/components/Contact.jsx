@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import imageHero from "../assets/imghero.png";
+import { trackContactSubmission, trackSectionView } from "../utils/analytics";
 
 export default function Contact() {
   const formRef = useRef();
@@ -11,6 +12,10 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  React.useEffect(() => {
+    trackSectionView('Contact');
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -66,13 +71,16 @@ export default function Contact() {
       setSubmitStatus({ type: "success", message: "Message sent successfully! I'll get back to you soon." });
       setFormData({ name: "", email: "", message: "" });
       formRef.current.reset();
+      trackContactSubmission('success');
     } catch (err) {
       if (err instanceof EmailJSResponseStatus) {
         console.log('EMAILJS FAILED...', err);
         setSubmitStatus({ type: "error", message: "Email service failed. Please try again." });
+        trackContactSubmission('error');
       } else {
         console.log('ERROR', err);
         setSubmitStatus({ type: "error", message: "Failed to send message. Please try again." });
+        trackContactSubmission('error');
       }
     } finally {
       setIsSubmitting(false);

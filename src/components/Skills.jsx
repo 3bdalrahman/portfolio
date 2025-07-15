@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import imageHero from "../assets/imghero.png";
 import "./certificates-animations.css";
+import { trackSectionView } from "../utils/analytics";
 
 const SkillsData = [
   // Frontend
@@ -192,6 +193,10 @@ const SkillBox = ({ image, title, description }) => (
 export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState("Backend");
   const [fadeKey, setFadeKey] = useState(0);
+
+  React.useEffect(() => {
+    trackSectionView('Skills');
+  }, []);
 
   const filteredSkills = SkillsData.filter((s) => s.category === selectedCategory);
 

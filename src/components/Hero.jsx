@@ -3,7 +3,20 @@ import Navbar from "./Navbar";
 import imageHero from "../assets/imghero.png";
 import github from "../assets/github.png";
 import linkedin from "../assets/linkedin.png";
+import { trackCVView, trackSocialClick, trackSectionView } from "../utils/analytics";
 export default function Hero() {
+  React.useEffect(() => {
+    trackSectionView('Hero');
+  }, []);
+
+  const handleCVClick = () => {
+    trackCVView('view');
+  };
+
+  const handleSocialClick = (platform) => {
+    trackSocialClick(platform);
+  };
+
   return (
     <div className="relative overflow-hidden min-h-[550px] sm:min-h-[600px] flex flex-col items-center">
       <div
@@ -34,16 +47,25 @@ export default function Hero() {
             I’m a full-stack and mobile developer who enjoys building backend services, mobile apps, and web interfaces that solve real problems. With a strong focus on clean code and scalable architecture, I love turning ideas into working products.
           </p>
           <div className="flex items-center space-x-4 mb-6">
-            <a href="https://github.com/3bdalrahman" target="_blank">
+            <a 
+              href="https://github.com/3bdalrahman" 
+              target="_blank"
+              onClick={() => handleSocialClick('GitHub')}
+            >
               <img src={github} alt="github" className="w-11 h-11" />
             </a>
-            <a href="https://www.linkedin.com/in/abdulrhman-ahmed03/" target="_blank">
+            <a 
+              href="https://www.linkedin.com/in/abdulrhman-ahmed03/" 
+              target="_blank"
+              onClick={() => handleSocialClick('LinkedIn')}
+            >
               <img src={linkedin} alt="linkedin" className="w-11 h-11" />
             </a>
           </div>
           <a
             href="https://drive.google.com/file/d/1ViPIUtb0hrboxz5CSz1iTe7EIKIj-Q7t/view?usp=sharing"
             target="_blank"
+            onClick={handleCVClick}
           >
             <button
               className="inline-flex text-white border-2 py-2 px-6 focus:outline-none hover:bg-[#801b9c]

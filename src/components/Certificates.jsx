@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./certificates-animations.css";
+import { trackCertificateVerification, trackSectionView } from "../utils/analytics";
 import webDev from "../assets/certificates/Web Development Challenger Track image.png";
 import node from "../assets/certificates/node js mahara-tech-page-00001.jpg";
 import php from "../assets/certificates/php mahara-tech-page-00001.jpg";
@@ -132,7 +133,12 @@ export default function Certificates() {
 
   React.useEffect(() => {
     AOS.init({ once: true });
+    trackSectionView('Certificates');
   }, []);
+
+  const handleCertificateVerification = (certificateName) => {
+    trackCertificateVerification(certificateName);
+  };
 
   const filteredCertificates =
     selectedCategory === "All"
@@ -215,6 +221,7 @@ export default function Certificates() {
                       className="bg-white/20 text-white px-4 py-2 rounded-full border-2 border-white/30 font-semibold backdrop-blur-md hover:bg-white/30 transition"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => handleCertificateVerification(cert.title)}
                     >
                       Verify Certificate
                     </a>
@@ -227,6 +234,7 @@ export default function Certificates() {
                     className="bg-white/20 text-white px-3 py-1 rounded-full border-2 border-white/30 font-semibold backdrop-blur-md hover:bg-white/30 transition text-sm"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleCertificateVerification(cert.title)}
                   >
                     Verify
                   </a>

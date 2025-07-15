@@ -5,6 +5,7 @@ import cryptocipher from "../assets/projects/cryptocipher.png";
 import taxi from "../assets/projects/taxi total amount.png";
 import meca from "../assets/projects/meca.png";
 import wagbat from "../assets/projects/wagbat.png";
+import { trackProjectInteraction, trackSectionView } from "../utils/analytics";
 const projects = [
   {
     title: "Bimar – AI-Powered Healthcare Platform",
@@ -75,6 +76,14 @@ export default function Projects() {
   const [activeMobileCard, setActiveMobileCard] = useState(null);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 
+  React.useEffect(() => {
+    trackSectionView('Projects');
+  }, []);
+
+  const handleProjectInteraction = (projectName, action, linkType) => {
+    trackProjectInteraction(projectName, action, linkType);
+  };
+
   const handleCardClick = (title) => {
     if (!isMobile) return;
     setActiveMobileCard((prev) => (prev === title ? null : title));
@@ -122,6 +131,7 @@ export default function Projects() {
                       className="cursor-pointer bg-white/20 text-white px-4 py-2 rounded-full border-2 border-white/30 font-semibold backdrop-blur-md hover:bg-white/30 transition"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => handleProjectInteraction(project.title, 'click', repo.label)}
                     >
                       <span className="mr-2">
                         {repo.label === "Live Link" ? "🔗" : 

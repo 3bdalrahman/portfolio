@@ -2,7 +2,12 @@ import React from "react";
 import img_about1 from "../assets/img_about1.png";
 import img_about2 from "../assets/img_about2.png";
 import img_about from "../assets/img_about.png";
+import { trackSectionView } from "../utils/analytics";
 export default function About() {
+  React.useEffect(() => {
+    trackSectionView('About');
+  }, []);
+
   return (
     <section
       id="about"
