@@ -19,7 +19,7 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between p-5">
         {/* Logo*/}
         <a href="#home" className="text-4xl font-bold italic text-white">
-          Portfolio
+          Abdulrhman
         </a>
 
         {/* Mobile Menu Toggle */}
