@@ -1,83 +1,205 @@
-import React from "react";
+import React, { useState } from "react";
 import imageHero from "../assets/imghero.png";
+import "./certificates-animations.css";
 
 const SkillsData = [
+  // Frontend
   {
     id: 1,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    title: "React",
-    description: "React is a JavaScript library for building user interfaces.",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    title: "HTML5",
+    description: "The standard markup language for creating web pages.",
+    category: "Frontend",
   },
   {
     id: 2,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-    title: "Node.js",
-    description:
-      "Node.js is a runtime environment for executing JavaScript code outside of a browser.",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+    title: "CSS3",
+    description: "Style sheet language used for describing the look of web pages.",
+    category: "Frontend",
   },
   {
     id: 3,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-    title: "Express",
-    description:
-      "A minimal and flexible Node.js web application framework for building APIs and web applications.",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    title: "JavaScript",
+    description: "High-level, versatile programming language for the web.",
+    category: "Frontend",
   },
   {
     id: 4,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    title: "Mongodb",
-    description:
-      "A document-oriented NoSQL database that provides high performance and easy scalability.",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    title: "React",
+    description: "JavaScript library for building user interfaces.",
+    category: "Frontend",
   },
+  // Mobile
   {
     id: 5,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-    title: "firebase",
-    description:
-      "Google's platform offering real-time database, authentication, hosting, and cloud functions.",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    title: "React Native",
+    description: "Framework for building native apps using React.",
+    category: "Mobile",
   },
   {
+    id: 22,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+    title: "Kotlin Compose",
+    description: "Modern toolkit for building native Android UIs with Kotlin.",
+    category: "Mobile",
+  },
+  // Backend
+  {
     id: 6,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-    title: "PHP",
-    description:
-      "A popular server-side scripting language designed for web development.",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    title: "Node.js",
+    description: "JavaScript runtime for server-side programming.",
+    category: "Backend",
   },
   {
     id: 7,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
-    title: "Laravel",
-    description:
-      "An elegant PHP framework with MVC architecture and built-in tools for rapid development.",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+    title: "Express",
+    description: "Minimal and flexible Node.js web application framework.",
+    category: "Backend",
   },
   {
     id: 8,
-    image:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+    title: "PHP",
+    description: "Popular server-side scripting language for web development.",
+    category: "Backend",
+  },
+  // Database
+  {
+    id: 9,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
     title: "MySQL",
-    description:
-      "A reliable relational database management system widely used for web applications.",
+    description: "Popular open-source relational database management system.",
+    category: "Database",
+  },
+  {
+    id: 10,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    title: "MongoDB",
+    description: "Document-oriented NoSQL database for high performance.",
+    category: "Database",
+  },
+  {
+    id: 11,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    title: "Mongo Atlas",
+    description: "Cloud database service for MongoDB deployments.",
+    category: "Database",
+  },
+  {
+    id: 23,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+    title: "Firebase",
+    description: "Google's platform offering real-time database, authentication, hosting, and cloud functions.",
+    category: "Database",
+  },
+  // Tools
+  {
+    id: 12,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    title: "Git",
+    description: "Distributed version control system for tracking changes in code.",
+    category: "Tools",
+  },
+  {
+    id: 13,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    title: "GitHub",
+    description: "Web-based platform for version control and collaboration.",
+    category: "Tools",
+  },
+  {
+    id: 14,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    title: "VS Code",
+    description: "Popular source-code editor developed by Microsoft.",
+    category: "Tools",
+  },
+  {
+    id: 15,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+    title: "Postman",
+    description: "API platform for building and using APIs.",
+    category: "Tools",
+  },
+  {
+    id: 16,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg",
+    title: "MS Office",
+    description: "Suite of office productivity applications by Microsoft.",
+    category: "Tools",
+  },
+  // Programming Languages
+  {
+    id: 17,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+    title: "C",
+    description: "General-purpose, procedural computer programming language.",
+    category: "Programming Languages",
+  },
+  {
+    id: 18,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+    title: "C++",
+    description: "General-purpose programming language, extension of C.",
+    category: "Programming Languages",
+  },
+  {
+    id: 19,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    title: "Java",
+    description: "High-level, class-based, object-oriented programming language.",
+    category: "Programming Languages",
+  },
+  {
+    id: 20,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+    title: "Kotlin",
+    description: "Modern programming language for JVM and Android.",
+    category: "Programming Languages",
+  },
+  {
+    id: 21,
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xml/xml-original.svg",
+    title: "XML",
+    description: "Markup language for encoding documents in a format readable by humans and machines.",
+    category: "Mobile",
   },
 ];
+
+const categories = [
+  "Backend",
+  ...Array.from(new Set(SkillsData.map((s) => s.category))).filter(cat => cat !== "Backend"),
+];
+
 const SkillBox = ({ image, title, description }) => (
-  <article className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center hover:bg-purple-800 transition-all duration-300">
-    <figure className="flex justify-center mb-4">
-      <img src={image} alt={title} className="w-16 h-16 sm:w-20 sm:h-20" />
+  <article className="bg-white/5 border border-white/10 rounded-2xl shadow-xl backdrop-blur-md flex flex-col items-center p-6 transition-all duration-300 hover:scale-105 hover:border-purple-500/60">
+    <figure className="flex justify-center items-center mb-4">
+      <img src={image} alt={title} className="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-lg" />
     </figure>
-    <header>
-      <h3 className="text-lg sm:text-xl font-semibold mb-2">{title}</h3>
+    <header className="mb-2 text-center">
+      <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{title}</h3>
     </header>
-    <p className="text-gray-400 text-sm sm:text-base">{description}</p>
+    <p className="text-gray-300 text-sm sm:text-base text-center">{description}</p>
   </article>
 );
+
 export default function Skills() {
+  const [selectedCategory, setSelectedCategory] = useState("Backend");
+  const [fadeKey, setFadeKey] = useState(0);
+
+  const filteredSkills = SkillsData.filter((s) => s.category === selectedCategory);
+
+  const handleFilter = (cat) => {
+    setSelectedCategory(cat);
+    setFadeKey((k) => k + 1);
+  };
+
   return (
     <section
       id="skills"
@@ -108,12 +230,29 @@ export default function Skills() {
             frontends, I focus on writing clean, efficient, and scalable code.
           </p>
         </header>
+        {/* Filter UI */}
+        <div className="flex flex-wrap justify-center gap-4 mb-6">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => handleFilter(cat)}
+              className={`cursor-pointer px-5 py-2 rounded-full font-semibold border-2 transition-all duration-200 text-sm uppercase tracking-wide
+                ${selectedCategory === cat
+                  ? "bg-purple-600 text-white border-transparent shadow-lg"
+                  : "bg-gray-800 text-gray-200 border-white/20 hover:bg-purple-800"}
+              `}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
         <section
+          key={fadeKey}
           data-aos="fade-up"
           data-aos-delay="500"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-4 fade-in"
         >
-          {SkillsData.map((skill) => (
+          {filteredSkills.map((skill) => (
             <SkillBox
               key={skill.id}
               image={skill.image}

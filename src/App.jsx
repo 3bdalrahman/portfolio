@@ -4,6 +4,8 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Projects from './components/Projects';
+import Certificates from './components/Certificates';
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 function App() {
@@ -17,6 +19,8 @@ function App() {
       <Hero/>
       <About/>
       <Skills/>
+      <Projects/>
+      <Certificates/>
       <Contact/>
       <Footer/>
     </main>
