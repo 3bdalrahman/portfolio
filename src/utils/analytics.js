@@ -1,28 +1,59 @@
-// GA4 Analytics Tracking Utility
+// ReactGA Analytics Tracking Utility
+import ReactGA from 'react-ga4';
 
-// Initialize GA4 if not already available
-if (typeof window !== 'undefined' && window.gtag) {
-  window.gtag = window.gtag || function() {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(arguments);
-  };
-}
+// Initialize ReactGA
+export const initGA = () => {
+  if (typeof window !== 'undefined') {
+    try {
+      ReactGA.initialize('G-FF8HB6J7Q7', {
+        debug: true, // Enable debug mode to see more info
+        gaOptions: {
+          siteSpeedSampleRate: 100
+        }
+      });
+      console.log('ReactGA initialized successfully');
+      
+      // Send initial pageview
+      ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+      
+      // Send a test event to verify ReactGA is working
+      setTimeout(() => {
+        ReactGA.event({
+          category: 'Test',
+          action: 'App Loaded',
+          label: 'Portfolio Loaded Successfully'
+        });
+        console.log('Test event sent to verify ReactGA');
+      }, 2000);
+    } catch (error) {
+      console.error('ReactGA initialization failed:', error);
+    }
+  }
+};
 
 // Track custom events
 export const trackEvent = (eventName, parameters = {}) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', eventName, {
-      event_category: 'Portfolio Interaction',
-      ...parameters
-    });
-    console.log('GA4 Event tracked:', eventName, parameters);
+  if (typeof window !== 'undefined') {
+    try {
+      ReactGA.event({
+        category: 'Portfolio Interaction',
+        action: eventName,
+        label: parameters.label || parameters.event_label,
+        value: parameters.value || 1,
+        nonInteraction: false,
+        transport: 'beacon'
+      });
+      console.log('ReactGA Event tracked:', eventName, parameters);
+    } catch (error) {
+      console.error('ReactGA Event failed:', error);
+    }
   }
 };
 
 // Track CV view/download
 export const trackCVView = (action = 'view') => {
   trackEvent('cv_interaction', {
-    event_label: `CV ${action}`,
+    label: `CV ${action}`,
     value: 1
   });
 };
@@ -30,7 +61,7 @@ export const trackCVView = (action = 'view') => {
 // Track social media clicks
 export const trackSocialClick = (platform) => {
   trackEvent('social_click', {
-    event_label: platform,
+    label: platform,
     value: 1
   });
 };
@@ -38,7 +69,7 @@ export const trackSocialClick = (platform) => {
 // Track project interactions
 export const trackProjectInteraction = (projectName, action, linkType) => {
   trackEvent('project_interaction', {
-    event_label: `${projectName} - ${action}`,
+    label: `${projectName} - ${action}`,
     custom_parameter_1: projectName,
     custom_parameter_2: action,
     custom_parameter_3: linkType,
@@ -49,7 +80,7 @@ export const trackProjectInteraction = (projectName, action, linkType) => {
 // Track certificate verification
 export const trackCertificateVerification = (certificateName) => {
   trackEvent('certificate_verification', {
-    event_label: certificateName,
+    label: certificateName,
     value: 1
   });
 };
@@ -57,7 +88,7 @@ export const trackCertificateVerification = (certificateName) => {
 // Track contact form submission
 export const trackContactSubmission = (status = 'success') => {
   trackEvent('contact_submission', {
-    event_label: status,
+    label: status,
     value: 1
   });
 };
@@ -65,7 +96,7 @@ export const trackContactSubmission = (status = 'success') => {
 // Track section views
 export const trackSectionView = (sectionName) => {
   trackEvent('section_view', {
-    event_label: sectionName,
+    label: sectionName,
     value: 1
   });
 };
@@ -73,7 +104,7 @@ export const trackSectionView = (sectionName) => {
 // Track button clicks
 export const trackButtonClick = (buttonName, location) => {
   trackEvent('button_click', {
-    event_label: buttonName,
+    label: buttonName,
     custom_parameter_1: location,
     value: 1
   });
@@ -81,10 +112,16 @@ export const trackButtonClick = (buttonName, location) => {
 
 // Track page views
 export const trackPageView = (pageName) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', 'G-FF8HB6J7Q7', {
-      page_title: pageName,
-      page_location: window.location.href
-    });
+  if (typeof window !== 'undefined') {
+    try {
+      ReactGA.send({
+        hitType: "pageview",
+        page: window.location.pathname,
+        title: pageName
+      });
+      console.log('ReactGA Pageview tracked:', pageName);
+    } catch (error) {
+      console.error('ReactGA Pageview failed:', error);
+    }
   }
 }; 
