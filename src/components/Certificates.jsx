@@ -227,18 +227,6 @@ export default function Certificates() {
                     </a>
                   </div>
                 </div>
-                {/* Show on mobile only if active */}
-                <div className={`flex sm:hidden justify-center p-2 bg-black/40 transition-all duration-300 ${activeMobileCard === cert.title ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 pointer-events-none'}`}>
-                  <a
-                    href={cert.verify || "#"}
-                    className="bg-white/20 text-white px-3 py-1 rounded-full border-2 border-white/30 font-semibold backdrop-blur-md hover:bg-white/30 transition text-sm"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleCertificateVerification(cert.title)}
-                  >
-                    Verify
-                  </a>
-                </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="text-lg font-bold text-white mb-1">{cert.title}</h3>
                   <p className="text-purple-300 font-semibold mb-1">{cert.issuer}</p>

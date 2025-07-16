@@ -74,7 +74,18 @@ const projects = [
 
 export default function Projects() {
   const [activeMobileCard, setActiveMobileCard] = useState(null);
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.matchMedia('(pointer: coarse)').matches);
+      }
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   React.useEffect(() => {
     trackSectionView('Projects');

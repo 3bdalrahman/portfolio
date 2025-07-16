@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
 export default function Navbar() {
@@ -10,9 +10,18 @@ export default function Navbar() {
     { id: 4, name: "Projects", link: "#projects" },
     { id: 5, name: "Certificates", link: "#certificates" },
   ];
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <header
-      className="fixed top-0 left-0 w-full z-50 text-white"
+      className={`fixed top-0 left-0 w-full z-50 text-white transition-all transition-colors transition-shadow duration-700 ease-in-out ${scrolled ? 'bg-[#801b9c]/60 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}
       data-aos="fade-up"
       data-aos-delay="300"
     >
@@ -54,14 +63,12 @@ export default function Navbar() {
       {/* Mobile Navigation */}
       <div
         className={`${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden bg-[#801b9c] fixed top-0 left-0 w-full
-        h-screen flex flex-col items-center justify-center space-y-8 pt-16
-        transition-transform duration-300 ease-in-out z-50`}
+          isOpen ? "translate-x-0" : "translate-x-full"
+        } md:hidden fixed top-0 right-0 w-4/5 max-w-xs h-screen bg-[#801b9c]/80 backdrop-blur-lg shadow-2xl rounded-l-3xl border-l-4 border-purple-400 flex flex-col items-center justify-center space-y-8 pt-16 transition-transform duration-300 ease-in-out z-50`}
       >
         {/* Close Button */}
         <button
-          className="absolute top-5 right-5 text-white"
+          className="absolute top-5 right-5 text-white bg-purple-700/70 hover:bg-purple-900 rounded-full p-2 shadow-lg transition"
           onClick={() => setIsOpen(false)}
         >
           <FiX className="w-8 h-8" />
@@ -71,7 +78,7 @@ export default function Navbar() {
           <a
             key={link.id}
             href={link.link}
-            className="text-lg text-white hover:text-gray-300"
+            className="text-lg text-white font-semibold px-6 py-3 rounded-full hover:bg-purple-900/70 hover:text-purple-200 transition shadow-md border border-white/10"
             onClick={() => setIsOpen(false)}
           >
             {link.name}
@@ -80,9 +87,7 @@ export default function Navbar() {
         {/* Contact Button */}
         <a href="#contact">
           <button
-            className="inline-flex text-white border-2 py-2 px-6 focus:outline-none hover:bg-purple-800
-          rounded-full text-lg
-          "
+            className="inline-flex text-white border-2 border-purple-300 py-2 px-8 focus:outline-none hover:bg-purple-800 hover:text-purple-200 hover:shadow-[0_0_40px_rgba(128,0,128,0.7)] rounded-full text-lg font-bold transition mt-4 shadow-lg"
             onClick={() => setIsOpen(false)}
           >
             Contact
