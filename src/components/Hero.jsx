@@ -44,7 +44,7 @@ export default function Hero() {
             </h2>
           </header>
           <p className="text-base sm:text-lg md:text-lg text-gray-200 mb-6">
-            I’m a full-stack and mobile developer who enjoys building backend services, mobile apps, and web interfaces that solve real problems. With a strong focus on clean code and scalable architecture, I love turning ideas into working products.
+          I build modern web and mobile applications with solid backend systems. I focus on writing clean, efficient code and creating reliable, scalable solutions that deliver real value.
           </p>
           <div className="flex items-center space-x-4 mb-6">
             <a 

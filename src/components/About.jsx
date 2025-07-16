@@ -54,11 +54,7 @@ export default function About() {
             </h1>
           </header>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-            I’m a full-stack and mobile developer with a strong focus on backend
-            development. I’ve built real-world projects using Node.js, React,
-            Laravel, and Kotlin — solving real problems and constantly learning
-            new tech. I enjoy building clean, scalable systems that make a real
-            impact.
+          I’m a full-stack and mobile developer with a focus on backend systems. I enjoy building efficient APIs, designing databases, and delivering smooth user experiences. I’m always learning and improving to write clean, scalable, and reliable code.
           </p>
           {/* <footer>
             <button

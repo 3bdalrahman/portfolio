@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./certificates-animations.css";
 import { trackCertificateVerification, trackSectionView } from "../utils/analytics";
+import { trackEvent } from "../utils/analytics";
 import webDev from "../assets/certificates/Web Development Challenger Track image.png";
 import node from "../assets/certificates/node js mahara-tech-page-00001.jpg";
 import php from "../assets/certificates/php mahara-tech-page-00001.jpg";
@@ -152,6 +153,7 @@ export default function Certificates() {
     setTimeout(() => {
       AOS.refresh();
     }, 350);
+    trackEvent('filter_used', { label: cat, section: 'Certificates' });
   };
 
   const handleCardClick = (title) => {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import imageHero from "../assets/imghero.png";
 import "./certificates-animations.css";
 import { trackSectionView } from "../utils/analytics";
+import { trackEvent } from "../utils/analytics";
 
 const SkillsData = [
   // Frontend
@@ -203,6 +204,7 @@ export default function Skills() {
   const handleFilter = (cat) => {
     setSelectedCategory(cat);
     setFadeKey((k) => k + 1);
+    trackEvent('filter_used', { label: cat, section: 'Skills' });
   };
 
   return (
