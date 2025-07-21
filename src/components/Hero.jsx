@@ -63,7 +63,7 @@ export default function Hero() {
             </a>
           </div>
           <a
-            href="https://drive.google.com/file/d/1ViPIUtb0hrboxz5CSz1iTe7EIKIj-Q7t/view?usp=sharing"
+            href="https://drive.google.com/file/d/11HjIoelb9yNWtTIlCZs7r0hBifIz6DNg/view?usp=sharing"
             target="_blank"
             onClick={handleCVClick}
           >
